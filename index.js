@@ -52,4 +52,4 @@ jsonfile.readFile(file)
             })
             .catch(error => console.error(error))
     }
-)
+)   

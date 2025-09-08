@@ -2,6 +2,7 @@
   "dependencies": {
     "create-require": "^1.1.1",
     "crypto": "^1.0.1",
+    "express": "^5.1.0",
     "fs": "^0.0.1-security",
     "jsonfile": "^6.2.0",
     "lodash": "^4.17.21",
