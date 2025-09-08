@@ -25,9 +25,10 @@ A simple Node.js CLI tool for translating phrases between languages with caching
 
 3. Follow the prompts:
 
-    - Enter the language you can read (e.g., `en`)
-    - Enter the language you want to read (e.g., `es`)
-    - Enter the phrase to translate
+    go to `localhost:3000/translate` and use the parameters:
+    `from`, `to`, `phrase`
+
+    ```http://localhost:3000/translate?to=es&from=en&phrase=bathroom%20please!```
 
 4. The translation will be displayed and cached for future use.
 
