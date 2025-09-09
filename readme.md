@@ -69,14 +69,6 @@ The server will:
 
 ## Example
 
-**CLI:**
-```
-Language you can read: en
-Language you want to read: es
-Phrase to translate: bathroom
-bathroom = baño
-```
-
 **Web API:**
 ```
 GET http://localhost:3000/translate?to=fr&from=en&phrase=hello%20world
