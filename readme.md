@@ -1,4 +1,4 @@
-# MystraEngineBabel
+# MystraEngine's Babel
 
 MystraEngine's Babel is a Node.js translation and text-to-speech engine with both CLI and web API support. It translates phrases between languages, caches results, and can speak translations using system voices.
 
