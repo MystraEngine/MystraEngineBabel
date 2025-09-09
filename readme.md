@@ -8,8 +8,6 @@ https://bsky.app/profile/thefaithofficial.bsky.social/post/3lyfhhb4xds27
 ---
 
 ## Features
-
-- **CLI translation:** Prompt-based translation from the terminal.
 - **Web API:** HTTP translation endpoint via Express.js (`/translate`).
 - **Automatic language detection:** Attempts to auto-detect the input language.
 - **Voice selection:** Auto-selects a voice for the target language (see `supported_voices.json`).
@@ -31,29 +29,6 @@ https://bsky.app/profile/thefaithofficial.bsky.social/post/3lyfhhb4xds27
 ---
 
 ## Usage
-
-### CLI
-
-Run the CLI tool:
-
-```sh
-node index.js
-```
-
-You will be prompted for:
-- The language you can read (e.g., `en`)
-- The language you want to read (e.g., `es`)
-- The phrase to translate
-
-The translation will be displayed, spoken aloud, and cached for future use.
-
-Example:
-```
-Language you can read: en
-Language you want to read: es
-Phrase to translate: bathroom
-bathroom = baño
-```
 
 ### Web API
 
