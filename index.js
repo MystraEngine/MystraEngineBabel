@@ -46,7 +46,7 @@ export async function translateText(fromLang, toLang, fromPhrase) {
         }
     ) 
 
-    return translated;
+    return '{"text": "' + translated + '"}'
 }
 
 

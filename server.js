@@ -16,11 +16,7 @@ app.get('/translate', async (req, res) => {
     const toLang = req.query.to || 'es'; // Default to 'es' if not provided
     const searchTerm = req.query.phrase; // Accessing the 'phrase' query parameter
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
-    res.end(
-        '<html><head><meta charset="UTF-8"></head><body><h1>Translation Service</h1><pre>' +
-        `Translate from ${fromLang} to ${toLang}: ${searchTerm} = ${await translateText(fromLang, toLang, searchTerm)}\n`
-        + '</pre></body></html>'
-    );
+    res.end(await translateText(fromLang, toLang, searchTerm));
 });
 
 app.listen(3000, () => {
