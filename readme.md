@@ -2,6 +2,9 @@
 
 A simple Node.js CLI tool for translating phrases between languages with caching.
 
+Example running on MacOS:
+https://bsky.app/profile/thefaithofficial.bsky.social/post/3lyfhhb4xds27
+
 ## Features
 
 - Prompts user for source language, target language, and phrase to translate
