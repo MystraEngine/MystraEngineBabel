@@ -6,7 +6,29 @@ const require = createRequire(import.meta.url);
 // Import the 'translate' package for language translation
 import translate from "translate";
 
+export var toVoice = 'Flo (English (US))';
+
+export function setToVoice(voiceName) {
+    toVoice = voiceName['name'] + ' (' + voiceName['language'] + ')';
+    console.log("Voice set to: " + toVoice);
+}
+
 export const supportedLangs = ['english', 'spanish', 'french', 'japanese'];
+
+// Import 'jsonfile' for reading and writing JSON files
+const jsonfile = require('jsonfile')
+
+
+const supportedVoicesFile = 'supported_voices.json';
+export var supportedVoices = [];
+// Try to read the translation from the settings file
+jsonfile.readFile(supportedVoicesFile)
+.then(supportedVoice => supportedVoices = supportedVoice) // If found, print the cached translation
+.catch(
+    error => {
+        console.log("Error reading supported voices file: " + error);
+    }
+)
 
 export async function translateText(fromLang, toLang, fromPhrase) {
     // Import the 'crypto' module for hashing
@@ -19,9 +41,6 @@ export async function translateText(fromLang, toLang, fromPhrase) {
     const translated = await translate(fromPhrase, { from: fromLang, to: toLang });
     // Output the original and translated phrases
     console.log(fromPhrase + " = " + translated);
-
-    // Import 'jsonfile' for reading and writing JSON files
-    const jsonfile = require('jsonfile')
 
     // Update the hash with the concatenated language codes and phrase
     hash.update(fromLang + toLang + fromPhrase)
@@ -51,28 +70,11 @@ export async function translateText(fromLang, toLang, fromPhrase) {
     // automatically pick platform
     const say = require('say')
 
-    var voice = 'Flo'
-    var voice_region = ''
-    switch (toLang) {
-        case 'en':
-            voice = 'Flo (English (US))'
-            break;
-        case 'es':
-            voice = 'Flo (Spanish (Spain))'
-            break;
-        case 'fr':
-            voice = 'Flo (French (France))'
-            break;
-        case 'ja':
-            voice = 'Flo (Japanese (Japan))'
-            break;
-    }
-
     // Use default system voice and speed
-    say.speak(translated, voice + voice_region, 1.0)
+    say.speak(translated, toVoice, 1.0)
 
     // Export spoken audio to a WAV file
-    say.export(translated, voice + voice_region, 1.0, hexHash + '.wav', (err) => {
+    say.export(translated, toVoice, 1.0, hexHash + '.wav', (err) => {
         if (err) {
             return console.error(err)
         }

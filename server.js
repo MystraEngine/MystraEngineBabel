@@ -5,7 +5,7 @@ const require = createRequire(import.meta.url);
 
 const http = require('http');
 
-import { translateText, supportedLangs } from './index.js';
+import { translateText, supportedLangs, supportedVoices, toVoice, setToVoice } from './index.js';
 
 // Example using Express.js
 const express = require('express');
@@ -20,10 +20,20 @@ app.get('/translate', async (req, res) => {
     const searchTerm = req.query.phrase; // Accessing the 'phrase' query parameter
     console.log(decodeURI(searchTerm));
     const langGuess = lngDetector.detect(decodeURI(searchTerm), 1);
+
     if ( langGuess.length > 0 &&
          supportedLangs.indexOf(langGuess[0][0]) >= 0 ) {
         fromLang = langGuess[0][0].substring(0,2);
         console.log("Auto-detected language: " + fromLang);
+    }
+
+    // Loop through all supported voices to see if we can auto-detect the language
+    for (var i = 0; i < supportedVoices.length; i++) {
+      if ( supportedVoices[i].locale.startsWith(toLang) ) {
+        setToVoice(supportedVoices[i]);
+        console.log("Auto-detected voice: " + toVoice);
+        break;
+      }
     }
 
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
