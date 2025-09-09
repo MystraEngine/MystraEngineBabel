@@ -1,6 +1,6 @@
 # MystraEngine's Babel
 
-MystraEngine's Babel is a Node.js translation and text-to-speech engine with both CLI and web API support. It translates phrases between languages, caches results, and can speak translations using system voices.
+MystraEngine's Babel is a Node.js translation and text-to-speech engine with web API support. It translates phrases between languages, caches results, and can speak translations using system voices.
 
 Example running on macOS:  
 https://bsky.app/profile/thefaithofficial.bsky.social/post/3lyfhhb4xds27
