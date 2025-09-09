@@ -52,6 +52,15 @@ export async function translateText(fromLang, toLang, fromPhrase) {
     // Use default system voice and speed
     say.speak(translated)
 
+    // Export spoken audio to a WAV file
+    say.export(translated, null, 1.0, hexHash + '.wav', (err) => {
+        if (err) {
+            return console.error(err)
+        }
+
+        console.log('Text has been saved to hexHash.wav.')
+    })
+
     return '{"text": "' + translated + '"}'
 }
 
