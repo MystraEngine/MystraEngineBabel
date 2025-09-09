@@ -49,11 +49,28 @@ export async function translateText(fromLang, toLang, fromPhrase) {
     // automatically pick platform
     const say = require('say')
 
+    var voice = 'Flo'
+    var voice_region = ''
+    switch (toLang) {
+        case 'en':
+            voice = 'Flo (English (US))'
+            break;
+        case 'es':
+            voice = 'Flo (Spanish (Spain))'
+            break;
+        case 'fr':
+            voice = 'Flo (French (France))'
+            break;
+        case 'ja':
+            voice = 'Flo (Japanese (Japan))'
+            break;
+    }
+
     // Use default system voice and speed
-    say.speak(translated)
+    say.speak(translated, voice + voice_region, 1.0)
 
     // Export spoken audio to a WAV file
-    say.export(translated, null, 1.0, hexHash + '.wav', (err) => {
+    say.export(translated, voice + voice_region, 1.0, hexHash + '.wav', (err) => {
         if (err) {
             return console.error(err)
         }
