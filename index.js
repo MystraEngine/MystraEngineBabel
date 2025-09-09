@@ -46,6 +46,12 @@ export async function translateText(fromLang, toLang, fromPhrase) {
         }
     ) 
 
+    // automatically pick platform
+    const say = require('say')
+
+    // Use default system voice and speed
+    say.speak(translated)
+
     return '{"text": "' + translated + '"}'
 }
 
