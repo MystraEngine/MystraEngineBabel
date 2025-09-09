@@ -7,7 +7,7 @@ const http = require('http');
 
 const path = require('path');
 
-import { translateText, supportedLangs, supportedVoices, toVoice, setToVoice } from './index.js';
+import { getWordsList, translateText, supportedLangs, supportedVoices, toVoice, setToVoice } from './index.js';
 
 // Example using Express.js
 const express = require('express');
@@ -51,6 +51,27 @@ app.get('/download-wav', (req, res) => {
       res.status(500).send('Error downloading file');
     }
   });
+});
+
+// Listens at /most-common-words
+app.get('/most-common-words', async (req, res) => {
+  const fromLang = req.query.from || 'english'; // Default to 'english' if not provided
+  const toLang = req.query.to || 'spanish'; // Default to 'spanish' if not provided
+  const count = parseInt(req.query.count) || 10; // Default to 10 if not provided
+
+  const fromWords = getWordsList(fromLang, count);
+  var toWords = [];
+  for (var i = 0; i < fromWords.length; i++) {
+    const translated = await translateText(fromLang, toLang, fromWords[i]);
+    toWords.push(translated);
+  }
+
+  var equalWords = [];
+  for (var i = 0; i < fromWords.length; i++) {
+    equalWords.push({from: fromWords[i], to: toWords[i]});
+  }
+
+  res.json(equalWords);
 });
 
 app.listen(3000, () => {

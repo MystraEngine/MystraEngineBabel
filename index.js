@@ -3,6 +3,14 @@ import { createRequire } from "module";
 // Create a require function scoped to this module
 const require = createRequire(import.meta.url);
 
+// Import the 'crypto' module for hashing
+const crypto = require('crypto');
+
+// Create a SHA-256 hash object
+const hash = crypto.createHash('sha256');
+
+export const { getWordsList } = require('most-common-words-by-language');
+
 // Import the 'translate' package for language translation
 import translate from "translate";
 
@@ -33,12 +41,6 @@ jsonfile.readFile(supportedVoicesFile)
 )
 
 export async function translateText(fromLang, toLang, fromPhrase) {
-    // Import the 'crypto' module for hashing
-    const crypto = require('crypto');
-
-    // Create a SHA-256 hash object
-    const hash = crypto.createHash('sha256');
-
     // Perform the translation asynchronously
     const translated = await translate(fromPhrase, { from: fromLang, to: toLang });
     // Output the original and translated phrases
@@ -46,12 +48,11 @@ export async function translateText(fromLang, toLang, fromPhrase) {
 
     // Update the hash with the concatenated language codes and phrase
     hash.update(fromLang + toLang + fromPhrase)
-    // Get the hexadecimal representation of the hash
-    const hexHash = hash.digest('hex')
-    const toSpeech = 'toSpeech/' + hexHash + '.wav';
-    // Construct the filename based on the hash
-    const file = hexHash + '.json';
+    return translated;
+}
 
+
+export function toSpeechFile(toVoice, toSpeech, translated) {
     // Try to read the translation from the cache file
     jsonfile.readFile(file)
     .then(obj => console.dir(obj)) // If found, print the cached translation
@@ -84,8 +85,4 @@ export async function translateText(fromLang, toLang, fromPhrase) {
 
         console.log('Text has been saved to: ' + toSpeech);
     })
-
-    return '{"text": "' + translated + '","toSpeech": "' + toSpeech + '"}';
 }
-
-
