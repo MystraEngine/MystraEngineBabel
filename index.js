@@ -6,6 +6,7 @@ const require = createRequire(import.meta.url);
 // Import the 'translate' package for language translation
 import translate from "translate";
 
+export var toSpeech = '';
 export var toVoice = 'Flo (English (US))';
 
 // Sets the global toVoice variable to the selected voice's name and language
@@ -47,7 +48,7 @@ export async function translateText(fromLang, toLang, fromPhrase) {
     hash.update(fromLang + toLang + fromPhrase)
     // Get the hexadecimal representation of the hash
     const hexHash = hash.digest('hex')
-
+    const toSpeech = 'toSpeech/' + hexHash + '.wav';
     // Construct the filename based on the hash
     const file = hexHash + '.json';
 
@@ -59,6 +60,7 @@ export async function translateText(fromLang, toLang, fromPhrase) {
             // If not found, create a new object with the translation
             var obj = {}
             obj['text'] = translated
+            obj['toSpeech'] = toSpeech;
             // Write the translation to the cache file
             jsonfile.writeFile(file, obj)
                 .then(res => {
@@ -66,7 +68,7 @@ export async function translateText(fromLang, toLang, fromPhrase) {
                 })
                 .catch(error => console.error(error))
         }
-    ) 
+    )
 
     // automatically pick platform
     const say = require('say')
@@ -75,15 +77,15 @@ export async function translateText(fromLang, toLang, fromPhrase) {
     say.speak(translated, toVoice, 1.0)
 
     // Export spoken audio to a WAV file
-    say.export(translated, toVoice, 1.0, hexHash + '.wav', (err) => {
+    say.export(translated, toVoice, 1.0, toSpeech, (err) => {
         if (err) {
             return console.error(err)
         }
 
-        console.log('Text has been saved to hexHash.wav.')
+        console.log('Text has been saved to: ' + toSpeech);
     })
 
-    return '{"text": "' + translated + '"}'
+    return '{"text": "' + translated + '","toSpeech": "' + toSpeech + '"}';
 }
 
 

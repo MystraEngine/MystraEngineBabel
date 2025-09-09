@@ -5,6 +5,8 @@ const require = createRequire(import.meta.url);
 
 const http = require('http');
 
+const path = require('path');
+
 import { translateText, supportedLangs, supportedVoices, toVoice, setToVoice } from './index.js';
 
 // Example using Express.js
@@ -39,6 +41,16 @@ app.get('/translate', async (req, res) => {
 
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     res.end(await translateText(fromLang, toLang, searchTerm));
+});
+
+app.get('/download-wav', (req, res) => {
+  const filePath = 'f6a0032dbc3abf160a143fe1218bda26820d11ea41d50d468b45c3825823c467.wav'; // Replace 'audio.wav' with your file name
+  res.download(filePath, 'my_audio.wav', (err) => {
+    if (err) {
+      console.error('Error downloading file:', err);
+      res.status(500).send('Error downloading file');
+    }
+  });
 });
 
 app.listen(3000, () => {
