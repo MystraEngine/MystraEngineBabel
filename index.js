@@ -26,7 +26,7 @@ export function setToVoice(voiceName) {
 export const supportedLangs = ['english', 'spanish', 'french', 'japanese'];
 
 // Import 'jsonfile' for reading and writing JSON files
-const jsonfile = require('jsonfile')
+export const jsonfile = require('jsonfile')
 
 
 const supportedVoicesFile = 'supported_voices.json';
@@ -52,25 +52,7 @@ export async function translateText(fromLang, toLang, fromPhrase) {
 }
 
 
-export function toSpeechFile(toVoice, toSpeech, translated) {
-    // Try to read the translation from the cache file
-    jsonfile.readFile(file)
-    .then(obj => console.dir(obj)) // If found, print the cached translation
-    .catch(
-        error => {
-            // If not found, create a new object with the translation
-            var obj = {}
-            obj['text'] = translated
-            obj['toSpeech'] = toSpeech;
-            // Write the translation to the cache file
-            jsonfile.writeFile(file, obj)
-                .then(res => {
-                    console.log('Write complete')
-                })
-                .catch(error => console.error(error))
-        }
-    )
-
+export function toSpeechFile(toSpeech, translated) {
     // automatically pick platform
     const say = require('say')
 

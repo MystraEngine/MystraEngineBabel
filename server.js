@@ -1,13 +1,11 @@
 // Import createRequire to allow using CommonJS modules in an ES module context
 import { createRequire } from "module";
 // Create a require function scoped to this module
-const require = createRequire(import.meta.url);
-
+export const require = createRequire(import.meta.url);
 const http = require('http');
-
 const path = require('path');
 
-import { getWordsList, translateText, supportedLangs, supportedVoices, toVoice, setToVoice } from './index.js';
+import { getWordsList, translateText, supportedLangs, supportedVoices, toVoice, setToVoice, toSpeechFile } from './index.js';
 
 // Example using Express.js
 const express = require('express');
@@ -40,7 +38,12 @@ app.get('/translate', async (req, res) => {
     }
 
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
-    res.end(await translateText(fromLang, toLang, searchTerm));
+
+    const translatedText = await translateText(fromLang, toLang, searchTerm);
+
+    toSpeechFile(toLang, translatedText);
+
+    res.end(translatedText);
 });
 
 app.get('/download-wav', (req, res) => {
@@ -73,6 +76,7 @@ app.get('/most-common-words', async (req, res) => {
 
   res.json(equalWords);
 });
+
 
 app.listen(3000, () => {
   console.log('Server listening on port 3000');
