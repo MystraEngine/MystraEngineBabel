@@ -6,6 +6,8 @@ const require = createRequire(import.meta.url);
 // Import the 'translate' package for language translation
 import translate from "translate";
 
+export const supportedLangs = ['english', 'spanish', 'french', 'japanese'];
+
 export async function translateText(fromLang, toLang, fromPhrase) {
     // Import the 'crypto' module for hashing
     const crypto = require('crypto');

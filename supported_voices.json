@@ -1,0 +1,86 @@
+[
+    {
+        "name": "Flo",
+        "language": "German (Germany)",
+        "locale": "de_DE",
+        "sample": "Hallo! Ich heiße Flo."
+    },
+    {
+        "name": "Flo",
+        "language": "English (UK)",
+        "locale": "en_GB",
+        "sample": "Hello! My name is Flo."
+    },
+    {
+        "name": "Flo",
+        "language": "English (US)",
+        "locale": "en_US",
+        "sample": "Hello! My name is Flo."
+    },
+    {
+        "name": "Flo",
+        "language": "Spanish (Spain)",
+        "locale": "es_ES",
+        "sample": "¡Hola! Me llamo Flo."
+    },
+    {
+        "name": "Flo",
+        "language": "Spanish (Mexico)",
+        "locale": "es_MX",
+        "sample": "¡Hola! Me llamo Flo."
+    },
+    {
+        "name": "Flo",
+        "language": "Finnish (Finland)",
+        "locale": "fi_FI",
+        "sample": "Hei! Nimeni on Flo."
+    },
+    {
+        "name": "Flo",
+        "language": "French (Canada)",
+        "locale": "fr_CA",
+        "sample": "Bonjour! Je m’appelle Flo."
+    },
+    {
+        "name": "Flo",
+        "language": "French (France)",
+        "locale": "fr_FR",
+        "sample": "Bonjour, je m’appelle Flo."
+    },
+    {
+        "name": "Flo",
+        "language": "Italian (Italy)",
+        "locale": "it_IT",
+        "sample": "Ciao! Mi chiamo Flo."
+    },
+    {
+        "name": "Flo",
+        "language": "Japanese (Japan)",
+        "locale": "ja_JP",
+        "sample": "こんにちは! 私の名前はFloです。"
+    },
+    {
+        "name": "Flo",
+        "language": "Korean (South Korea)",
+        "locale": "ko_KR",
+        "sample": "안녕하세요. 제 이름은 Flo입니다."
+    },
+    {
+        "name": "Flo",
+        "language": "Portuguese (Brazil)",
+        "locale": "pt_BR",
+        "sample": "Olá, meu nome é Flo."
+    },
+    {
+        "name": "Flo",
+        "language": "Chinese (China mainland)",
+        "locale": "zh_CN",
+        "sample": "你好！我叫Flo。"
+    },
+    {
+        "name": "Flo",
+        "language": "Chinese (Taiwan)",
+        "locale": "zh_TW",
+        "sample": "你好，我叫Flo。"
+    }
+]
