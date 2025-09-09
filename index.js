@@ -8,6 +8,7 @@ import translate from "translate";
 
 export var toVoice = 'Flo (English (US))';
 
+// Sets the global toVoice variable to the selected voice's name and language
 export function setToVoice(voiceName) {
     toVoice = voiceName['name'] + ' (' + voiceName['language'] + ')';
     console.log("Voice set to: " + toVoice);

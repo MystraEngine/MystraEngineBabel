@@ -23,6 +23,7 @@ app.get('/translate', async (req, res) => {
 
     if ( langGuess.length > 0 &&
          supportedLangs.indexOf(langGuess[0][0]) >= 0 ) {
+        // If the detected language is supported, set fromLang to its 2-letter code
         fromLang = langGuess[0][0].substring(0,2);
         console.log("Auto-detected language: " + fromLang);
     }
